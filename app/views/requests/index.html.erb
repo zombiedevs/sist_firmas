@@ -1,0 +1,37 @@
+<h1>Listing requests</h1>
+<% @user= current_user %>
+<%= current_user.email%>
+<% @temp=@user.rol_ids%>
+<%@rol=Rol.find(@temp[0])%>
+<%=@rol.nombre%>
+
+<table>
+  <tr>
+    <th>Tituloo</th>
+    <th>Descripción</th>
+    <th>Tipo de requisición</th>
+    <th>Fondo</th>
+    <th>Estado</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @requests.each do |request| %>
+  <tr>
+    <%@estado=Rol.find(request.estado)%>
+    <td><%= request.titulo %></td>
+    <td><%= request.descripcion %></td>
+    <td><%= request.request_type_id %></td>
+    <td><%= request.fund_id %></td>
+    <td><%= @estado.nombre %></td>
+    <td><%= link_to 'Ver', request %></td>
+    <td><%= link_to 'Editar', edit_request_path(request) %></td>
+    <td><%= link_to 'Eliminar', request, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva requisición', new_request_path %>

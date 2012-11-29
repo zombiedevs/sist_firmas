@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Request type:</b>
+  <%= @principal.request_type_id %>
+</p>
+
+<p>
+  <b>Fund:</b>
+  <%= @principal.fund_id %>
+</p>
+
+<p>
+  <b>Lista:</b>
+  <%= @principal.lista %>
+</p>
+
+
+<%= link_to 'Edit', edit_principal_path(@principal) %> |
+<%= link_to 'Back', principals_path %>

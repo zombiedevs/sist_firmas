@@ -1,0 +1,26 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Area</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+    	<% @rol= Rol.find(user) %>
+      <td><%= user.email %></td>
+      <td><%= user.username %></td>
+      <td><%= @rol.nombre%></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user', new_user_path %>
+<%= link_to 'salir', destroy_user_session_path %>

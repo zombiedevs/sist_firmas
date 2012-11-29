@@ -1,0 +1,30 @@
+<% @user= current_user %>
+<%= current_user.email%>
+<% @rol=Rol.find(@user)%>
+<%=@rol.nombre%>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Titulo:</b>
+  <%= @request.titulo %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @request.descripcion %>
+</p>
+
+<p>
+  <b>Request type:</b>
+  <%= @request.request_type_id %>
+</p>
+
+<p>
+  <b>Fund:</b>
+  <%= @request.fund_id %>
+</p>
+
+
+<%= link_to 'Editar', edit_request_path(@request) %> |
+<%= link_to 'Aceptar', :controller => :requests, :action=>:acept %> |
+<%= link_to 'Atras', requests_path %>

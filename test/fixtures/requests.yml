@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titulo: MyString
+  descripcion: MyText
+  request_type_id: 1
+  fund_id: 1
+
+two:
+  titulo: MyString
+  descripcion: MyText
+  request_type_id: 1
+  fund_id: 1
