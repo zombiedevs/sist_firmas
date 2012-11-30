@@ -2,6 +2,7 @@ class FundsController < ApplicationController
   # GET /funds
   # GET /funds.json
   before_filter :authenticate_user!
+  load_and_authorize_resource
   def index
     @funds = Fund.all
 

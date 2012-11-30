@@ -1,7 +1,14 @@
 SistFirmas::Application.routes.draw do
+
   devise_for :users
 
-resources :users, :path => '/admin/users'
+devise_scope :user do match "/" => "pages#home" end
+
+
+  root :to => "devise/sessions#new"
+
+  resources :users, :path => '/admin/users'
+
   resources :request_types
 
   resources :principals
@@ -13,9 +20,10 @@ resources :users, :path => '/admin/users'
   resources :funds
 
   resources :requests
-
+ 
    match '/requests/:id/acept/',:controller =>'requests',:action => 'acept'
-
+   
+  match '/home/',:controller =>'pages',:action => 'home'
 
 
 

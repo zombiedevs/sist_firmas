@@ -2,6 +2,7 @@ class RolsController < ApplicationController
   # GET /rols
   # GET /rols.json
   before_filter :authenticate_user!
+  load_and_authorize_resource
   def index
     @rols = Rol.all
 

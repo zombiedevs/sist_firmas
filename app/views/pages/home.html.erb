@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<% @user= current_user %>
+<% @temp=@user.rol_ids%>
+<%@rol=Rol.find(@temp[0])%>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Bienvenido</title>
+	<meta name="author" content="edd" />
+	<!-- Date: 2012-11-29 -->
+</head>
+<body>
+<h1>Bienvenido <%=@user.username%> S-Req</h1>
+<br />
+<br />
+<h6>Correo:<%= current_user.email%></h6>
+<br />
+<h6>Area:<%=@rol.nombre%></h6>
+<br />
+<h3><%=link_to 'Iniciar',requests_path%></h3>
+<%= link_to 'Salir', destroy_user_session_path %>
+</body>
+</html>
+

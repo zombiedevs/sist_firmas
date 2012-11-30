@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   before_filter :authenticate_user!
+  load_and_authorize_resource
   def index
     @requests = Request.all
 
@@ -36,6 +37,7 @@ class RequestsController < ApplicationController
   # GET /requests/1/edit
   def edit
     @request = Request.find(params[:id])
+    unauthorized! if cannot? :edit, @request
   end
 
   # POST /requests
@@ -85,6 +87,7 @@ class RequestsController < ApplicationController
     @user= current_user
     @rol=Rol.find(@user)
     @request= Request.find(params[:id])
+    unauthorized! if cannot? :acept, @request
     @request.estado= @rol.id
     @request.save
     respond_to do |format|

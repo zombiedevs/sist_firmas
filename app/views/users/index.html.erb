@@ -9,18 +9,20 @@
 
   <% @users.each do |user| %>
     <tr>
-    	<% @rol= Rol.find(user) %>
+    	<% @rol= Rol.find(user.rol_ids[0]) %>
       <td><%= user.email %></td>
       <td><%= user.username %></td>
       <td><%= @rol.nombre%></td>
-      <td><%= link_to 'Show', user %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Ver', user %></td>
+ 
+      <td><%= link_to 'Editar', edit_user_path(user) %></td>
+
+      <td><%= link_to 'Eliminar', user, :confirm => 'Esta seguro?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New user', new_user_path %>
-<%= link_to 'salir', destroy_user_session %>
+<%= link_to 'Crear Usuario', new_user_path %>
+<%= link_to 'Salir', destroy_user_session_path %>

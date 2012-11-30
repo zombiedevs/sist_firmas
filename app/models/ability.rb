@@ -2,6 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    @id=user.rol_ids
+    @rol=Rol.find(@id[0])
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -24,10 +26,9 @@ class Ability
     #   can :update, Article, :published => true
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
-    if user.role? :administrador
-        can :manage ,:all
-        else
-        can :manage, :all   
-    end
+    can :manage, :all if @rol.nombre == "administrador"
+    can :manage, Request if @rol.nombre == "encargado"    
+    cannot :acept, Request if @rol.nombre == "encargado"
+ 
   end
 end

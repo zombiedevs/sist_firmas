@@ -2,6 +2,7 @@ class RequestTypesController < ApplicationController
   # GET /request_types
   # GET /request_types.json
   before_filter :authenticate_user!
+  load_and_authorize_resource
   def index
     @request_types = RequestType.all
 

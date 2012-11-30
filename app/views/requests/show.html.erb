@@ -24,7 +24,9 @@
   <%= @request.fund_id %>
 </p>
 
-
-<%= link_to 'Editar', edit_request_path(@request) %> |
+<% if can? :edit, @request %>
+<%= link_to 'Editar', edit_request_path(@request) %> |<%end%>
+<% if can? :acept, @request %>
 <%= link_to 'Aceptar', :controller => :requests, :action=>:acept %> |
+<%end%>
 <%= link_to 'Atras', requests_path %>
