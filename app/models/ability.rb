@@ -63,6 +63,16 @@ class Ability
                            @rol.nombre == "Compras"or
                            @rol.nombre == "Rectoria" or 
                            @rol.nombre == "administrador"
-                          
+   can :rejected, Request if @rol.nombre == "Jefe de departamento" or
+                           @rol.nombre == "Secretario académico"or
+                           @rol.nombre == "Responsable"or
+                           @rol.nombre == "Coordinación administrativa"or
+                           @rol.nombre == "Contabilidad"or
+                           @rol.nombre == "Evaluación"or
+                           @rol.nombre == "Desarrollo y planeacion"or
+                           @rol.nombre == "Compras"or
+                           @rol.nombre == "Rectoria" or 
+                           @rol.nombre == "administrador"
+
   end
 end

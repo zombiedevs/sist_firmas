@@ -22,6 +22,8 @@ devise_scope :user do match "/" => "pages#home" end
   resources :requests
  
    match '/requests/:id/acept/',:controller =>'requests',:action => 'acept'
+  match '/requests/:id/rejected/',:controller =>'requests',:action => 'rejected',:via=>'get',:as=>'rejected_request'
+
    
   match '/home/',:controller =>'pages',:action => 'home'
 

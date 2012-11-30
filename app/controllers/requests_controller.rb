@@ -1,8 +1,10 @@
 class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
+
   before_filter :authenticate_user!
   load_and_authorize_resource
+
   def index
     @requests = Request.all
 
@@ -27,7 +29,8 @@ class RequestsController < ApplicationController
   # GET /requests/new.json
   def new
     @request = Request.new
-
+    @request.active=TRUE
+    @request.save
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @request }
@@ -95,4 +98,23 @@ class RequestsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    def rejected
+    @request= Request.find(params[:id])
+    @user= current_user
+    @rol=Rol.find(@user)
+    unauthorized! if cannot? :acept, @request
+    @request.estado= @rol.id
+    @request.active=FALSE
+
+    respond_to do |format|
+      if @request.update_attributes(params[:request])
+        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
 end

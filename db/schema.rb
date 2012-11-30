@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129042305) do
+ActiveRecord::Schema.define(:version => 20121130042658) do
 
   create_table "funds", :force => true do |t|
     t.string   "nombre"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20121129042305) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "estado"
+    t.boolean  "active"
+    t.text     "commit"
   end
 
   create_table "roles_users", :id => false, :force => true do |t|

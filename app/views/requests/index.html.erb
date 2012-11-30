@@ -29,17 +29,27 @@
     <%end%>
     <td><%= request.titulo %></td>
     <td><%= request.descripcion %></td>
-    <td><%= request.request_type_id %></td>
-    <td><%= request.fund_id %></td>
+    <%@tipo=RequestType.find(request.request_type_id )%>
+    <td><%= @tipo.nombre %></td>
+    <%@fondo=Fund.find(request.fund_id)%>
+    <td><%= @fondo.nombre %></td>
     <td><%= @estado.nombre %></td>
     <td><%= link_to 'Ver', request %></td>
     <td>
+    <% if can? :edit, @requests %>
     <% if @estado.nombre==nil%>
     <%= link_to 'Editar', edit_request_path(request) %>
     <%else%> Bloqueado 
     <%end%>
+    <%end%>
     </td>
-    <td><%= link_to 'Eliminar', request, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+    <td>
+    <%if can? :destroy, @requests%>
+    <%= link_to 'Eliminar', request, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+    <%end%>
+    <%if request.active==FALSE%>
+    <td>!!</td>
+    <%end%>
   </tr>
 <% end %>
 </table>

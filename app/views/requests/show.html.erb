@@ -27,10 +27,20 @@
   <b>Fund:</b>
   <%= @request.fund_id %>
 </p>
+<%if @request.active==FALSE%>
+<p>
+	<h4>Requisición rechazada</h4>
+</p>
+<%end%>
+
+
 
 <% if can? :edit, @request %>
 <%= link_to 'Editar', edit_request_path(@request) %> |<%end%>
 <% if can? :acept, @request %>
 <%= link_to 'Aceptar', :controller => :requests, :action=>:acept %> |
+<%end%>
+<% if can? :rejected, @request %>
+<%= link_to 'Rechazar', rejected_request_path(@request) %> |
 <%end%>
 <%= link_to 'Atras', requests_path %>
