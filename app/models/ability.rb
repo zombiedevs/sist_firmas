@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class Ability
   include CanCan::Ability
 
@@ -29,6 +31,38 @@ class Ability
     can :manage, :all if @rol.nombre == "administrador"
     can :manage, Request if @rol.nombre == "encargado"    
     cannot :acept, Request if @rol.nombre == "encargado"
- 
+    can :acept, Request if @rol.nombre == "Jefe de departamento" or
+                           @rol.nombre == "Secretario académico"or
+                           @rol.nombre == "Responsable"or
+                           @rol.nombre == "Coordinación administrativa"or
+                           @rol.nombre == "Contabilidad"or
+                           @rol.nombre == "Evaluación"or
+                           @rol.nombre == "Desarrollo y planeacion"or
+                           @rol.nombre == "Compras"or
+                           @rol.nombre == "Rectoria" or 
+                           @rol.nombre == "administrador"
+                           
+    can :index, Request if @rol.nombre == "Jefe de departamento" or
+                           @rol.nombre == "Secretario académico"or
+                           @rol.nombre == "Responsable"or
+                           @rol.nombre == "Coordinación administrativa"or
+                           @rol.nombre == "Contabilidad"or
+                           @rol.nombre == "Evaluación"or
+                           @rol.nombre == "Desarrollo y planeacion"or
+                           @rol.nombre == "Compras"or
+                           @rol.nombre == "Rectoria" or 
+                           @rol.nombre == "administrador"
+                           
+   can :show, Request if @rol.nombre == "Jefe de departamento" or
+                           @rol.nombre == "Secretario académico"or
+                           @rol.nombre == "Responsable"or
+                           @rol.nombre == "Coordinación administrativa"or
+                           @rol.nombre == "Contabilidad"or
+                           @rol.nombre == "Evaluación"or
+                           @rol.nombre == "Desarrollo y planeacion"or
+                           @rol.nombre == "Compras"or
+                           @rol.nombre == "Rectoria" or 
+                           @rol.nombre == "administrador"
+                          
   end
 end

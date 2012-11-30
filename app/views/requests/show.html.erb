@@ -1,7 +1,11 @@
+<h4>
 <% @user= current_user %>
 <%= current_user.email%>
-<% @rol=Rol.find(@user)%>
+<% @temp=@user.rol_ids%>
+<%@rol=Rol.find(@temp[0])%>
 <%=@rol.nombre%>
+<%= link_to 'Salir', destroy_user_session_path %>
+</h4>
 <p id="notice"><%= notice %></p>
 
 <p>
